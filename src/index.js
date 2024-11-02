@@ -62,6 +62,7 @@ app.listen(PORT,async()=>{
         console.log(`Server Listen At Port: ${PORT}`);
         await connectToDB();
         console.log("Successfully Connectecd To The DB");
+        
     }catch(e){
         console.log("error in catch block during listen the server",e.name,e.details,e.stack);
     }

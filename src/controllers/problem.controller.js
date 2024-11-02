@@ -1,4 +1,8 @@
 const NotImplementedError = require("../errors/notImplemented.error");
+const {ProblemService} = require("../serivces");
+const {ProblemRepository} = require("../repositories");
+
+const problemService = new ProblemService(new ProblemRepository());// here just to change repository if required and remainig all same (loose coupling)
 
 async function pingProblemController (req,resp,next){
     try{
@@ -11,7 +15,13 @@ async function pingProblemController (req,resp,next){
 
 async function addProblem(req,resp,next) {
     try{
-        throw new NotImplementedError("addProblem Controller");
+        const newProblem = await problemService.createProblem(req.body);
+        return resp.status(201).json({
+            success: true,
+            message: "Successfully Created A New Problem",
+            error: {},
+            data: newProblem
+        })
     }catch(e){
         next(e);
     }
