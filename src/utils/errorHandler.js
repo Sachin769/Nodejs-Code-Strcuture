@@ -20,4 +20,6 @@ function errorHandler(err,req,resp,next){
     }
 }
 
+// here if this errorHandler conatin error then that errorHandler error handle by the bydefault error handler of express
+//we can check by removing here next function from the error handler and look like error handler but actually middleware 
 module.exports = errorHandler;
